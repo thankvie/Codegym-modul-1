@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 1</title>
+</head>
+<body>
+    <h2>Câu 1: Tìm bội chung của 3 và 5</h2>
+    
+    <label>Nhập số:</label>
+    <input type="number" id="so">
+    <button onclick="themVaoMang()">Thêm vào mảng</button>
+
+    <script>
+        var mangSoNguyen = [];
+        
+        function themVaoMang() {
+            var so = document.getElementById("so").value;
+            mangSoNguyen.push(parseInt(so));
+            document.getElementById("so").value = "";
+        }
+    </script>
+</body>
+</html>
