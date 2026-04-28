@@ -25,6 +25,11 @@
     <input type="text" id="email"><br>
     
     <button onclick="themKhachHang()">Thêm khách hàng</button>
+    
+    <hr>
+    
+    <h3>Danh sách khách hàng</h3>
+    <div id="danhSach"></div>
 
     <script>
         // Đối tượng Khách hàng
@@ -53,7 +58,32 @@
             // Thêm vào danh sách
             danhSachKhachHang.push(khachHangMoi);
             
-            alert("Thêm khách hàng thành công!");
+            // Hiển thị danh sách
+            hienThiDanhSach();
+            
+            // Xóa form
+            document.getElementById("ma").value = "";
+            document.getElementById("ten").value = "";
+            document.getElementById("soDienThoai").value = "";
+            document.getElementById("diaChi").value = "";
+            document.getElementById("email").value = "";
+        }
+        
+        // Hàm hiển thị danh sách
+        function hienThiDanhSach() {
+            var html = "";
+            
+            for (var i = 0; i < danhSachKhachHang.length; i++) {
+                html += "<p><b>Khách hàng " + (i + 1) + ":</b> ";
+                html += danhSachKhachHang[i].ma + " - ";
+                html += danhSachKhachHang[i].ten + " - ";
+                html += danhSachKhachHang[i].soDienThoai + " - ";
+                html += danhSachKhachHang[i].diaChi + " - ";
+                html += danhSachKhachHang[i].email;
+                html += "</p>";
+            }
+            
+            document.getElementById("danhSach").innerHTML = html;
         }
     </script>
 </body>
