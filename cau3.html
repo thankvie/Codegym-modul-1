@@ -13,12 +13,19 @@
     
     <p>Mảng: <span id="hienThiMang"></span></p>
     <p>Số phần tử: <span id="soPhanTu">0</span>/50</p>
+    
+    <hr>
+    
+    <label>Nhập số nguyên dương k:</label>
+    <input type="number" id="k">
+    <button onclick="demCapSo()">Đếm cặp số</button>
+    
+    <p>Kết quả: <span id="ketQua"></span></p>
 
     <script>
         var mang = [];
         
         function themVaoMang() {
-            // Kiểm tra không quá 50 phần tử
             if (mang.length >= 50) {
                 alert("Mảng đã có 50 phần tử, không thể thêm nữa!");
                 return;
@@ -35,6 +42,16 @@
             document.getElementById("so").value = "";
             document.getElementById("hienThiMang").innerHTML = mang.join(", ");
             document.getElementById("soPhanTu").innerHTML = mang.length;
+        }
+        
+        function demCapSo() {
+            var k = document.getElementById("k").value;
+            
+            // Kiểm tra k là số nguyên dương
+            if (k === "" || parseInt(k) <= 0) {
+                alert("Vui lòng nhập số nguyên dương k!");
+                return;
+            }
         }
     </script>
 </body>
