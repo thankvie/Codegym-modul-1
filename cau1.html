@@ -10,6 +10,8 @@
     <label>Nhập số:</label>
     <input type="number" id="so">
     <button onclick="themVaoMang()">Thêm vào mảng</button>
+    
+    <p>Mảng số nguyên: <span id="hienThiMang"></span></p>
 
     <script>
         var mangSoNguyen = [];
@@ -18,6 +20,9 @@
             var so = document.getElementById("so").value;
             mangSoNguyen.push(parseInt(so));
             document.getElementById("so").value = "";
+            
+            // Hiển thị mảng ra màn hình
+            document.getElementById("hienThiMang").innerHTML = mangSoNguyen.join(", ");
         }
     </script>
 </body>
