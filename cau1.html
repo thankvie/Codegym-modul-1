@@ -12,17 +12,31 @@
     <button onclick="themVaoMang()">Thêm vào mảng</button>
     
     <p>Mảng số nguyên: <span id="hienThiMang"></span></p>
+    <p>Số phần tử: <span id="soPhanTu">0</span>/20</p>
 
     <script>
         var mangSoNguyen = [];
         
         function themVaoMang() {
+            // Kiểm tra không quá 20 phần tử
+            if (mangSoNguyen.length >= 20) {
+                alert("Mảng đã có 20 phần tử, không thể thêm nữa!");
+                return;
+            }
+            
             var so = document.getElementById("so").value;
+            
+            // Kiểm tra rỗng
+            if (so === "") {
+                alert("Vui lòng nhập một số!");
+                return;
+            }
+            
             mangSoNguyen.push(parseInt(so));
             document.getElementById("so").value = "";
             
-            // Hiển thị mảng ra màn hình
             document.getElementById("hienThiMang").innerHTML = mangSoNguyen.join(", ");
+            document.getElementById("soPhanTu").innerHTML = mangSoNguyen.length;
         }
     </script>
 </body>
