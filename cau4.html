@@ -3,6 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Câu 4 - Quản lý khách hàng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: inline-block;
+            width: 120px;
+            margin: 5px 0;
+        }
+        input {
+            padding: 5px;
+            margin: 5px 0;
+            width: 250px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <h2>Câu 4: Quản lý khách hàng</h2>
@@ -10,19 +48,19 @@
     <h3>Thêm khách hàng mới</h3>
     
     <label>Mã khách hàng:</label>
-    <input type="text" id="ma"><br>
+    <input type="text" id="ma" placeholder="Nhập mã"><br>
     
     <label>Tên khách hàng:</label>
-    <input type="text" id="ten"><br>
+    <input type="text" id="ten" placeholder="Nhập tên"><br>
     
     <label>Số điện thoại:</label>
-    <input type="text" id="soDienThoai"><br>
+    <input type="text" id="soDienThoai" placeholder="Nhập số điện thoại"><br>
     
     <label>Địa chỉ:</label>
-    <input type="text" id="diaChi"><br>
+    <input type="text" id="diaChi" placeholder="Nhập địa chỉ"><br>
     
     <label>Email:</label>
-    <input type="text" id="email"><br>
+    <input type="text" id="email" placeholder="Nhập email"><br>
     
     <button onclick="themKhachHang()">Thêm khách hàng</button>
     
@@ -44,13 +82,20 @@
         // Mảng danh sách khách hàng
         var danhSachKhachHang = [];
         
-        // Hàm thêm khách hàng
+        // Hàm thêm khách hàng mới
         function themKhachHang() {
+            // Lấy thông tin từ form
             var ma = document.getElementById("ma").value;
             var ten = document.getElementById("ten").value;
             var soDienThoai = document.getElementById("soDienThoai").value;
             var diaChi = document.getElementById("diaChi").value;
             var email = document.getElementById("email").value;
+            
+            // Kiểm tra thông tin
+            if (ma === "" || ten === "" || soDienThoai === "" || diaChi === "" || email === "") {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
             
             // Tạo đối tượng khách hàng mới
             var khachHangMoi = new KhachHang(ma, ten, soDienThoai, diaChi, email);
@@ -58,7 +103,7 @@
             // Thêm vào danh sách
             danhSachKhachHang.push(khachHangMoi);
             
-            // Hiển thị danh sách
+            // Hiển thị lại danh sách
             hienThiDanhSach();
             
             // Xóa form
@@ -69,20 +114,23 @@
             document.getElementById("email").value = "";
         }
         
-        // Hàm hiển thị danh sách
+        // Hàm hiển thị danh sách khách hàng
         function hienThiDanhSach() {
-            var html = "";
+            var html = "<table>";
+            html += "<tr><th>STT</th><th>Mã</th><th>Tên</th><th>SĐT</th><th>Địa chỉ</th><th>Email</th></tr>";
             
             for (var i = 0; i < danhSachKhachHang.length; i++) {
-                html += "<p><b>Khách hàng " + (i + 1) + ":</b> ";
-                html += danhSachKhachHang[i].ma + " - ";
-                html += danhSachKhachHang[i].ten + " - ";
-                html += danhSachKhachHang[i].soDienThoai + " - ";
-                html += danhSachKhachHang[i].diaChi + " - ";
-                html += danhSachKhachHang[i].email;
-                html += "</p>";
+                html += "<tr>";
+                html += "<td>" + (i + 1) + "</td>";
+                html += "<td>" + danhSachKhachHang[i].ma + "</td>";
+                html += "<td>" + danhSachKhachHang[i].ten + "</td>";
+                html += "<td>" + danhSachKhachHang[i].soDienThoai + "</td>";
+                html += "<td>" + danhSachKhachHang[i].diaChi + "</td>";
+                html += "<td>" + danhSachKhachHang[i].email + "</td>";
+                html += "</tr>";
             }
             
+            html += "</table>";
             document.getElementById("danhSach").innerHTML = html;
         }
     </script>
