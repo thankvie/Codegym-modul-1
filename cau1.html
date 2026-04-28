@@ -2,49 +2,65 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Câu 1</title>
+    <title>Câu 1 - Bội chung của 3 và 5</title>
 </head>
 <body>
     <h2>Câu 1: Tìm bội chung của 3 và 5</h2>
     
     <label>Nhập số:</label>
-    <input type="number" id="so">
+    <input type="number" id="so" placeholder="Nhập số nguyên">
     <button onclick="themVaoMang()">Thêm vào mảng</button>
     
-    <p>Mảng số nguyên: <span id="hienThiMang"></span></p>
+    <p>Mảng số nguyên: <b><span id="hienThiMang"></span></b></p>
     <p>Số phần tử: <span id="soPhanTu">0</span>/20</p>
     
     <hr>
     
     <button onclick="timVaLayTong()">Tìm bội chung của 3 và 5</button>
     
-    <p>Các số là bội chung: <span id="ketQua"></span></p>
-    <p>Tổng: <span id="tong"></span></p>
+    <p>Các số là bội chung: <b><span id="ketQua"></span></b></p>
+    <p>Tổng: <b><span id="tong"></span></b></p>
 
     <script>
+        // Mảng số nguyên (tối đa 20 phần tử)
         var mangSoNguyen = [];
         
+        // Hàm thêm số vào mảng
         function themVaoMang() {
+            // Kiểm tra không vượt quá 20 phần tử
             if (mangSoNguyen.length >= 20) {
                 alert("Mảng đã có 20 phần tử, không thể thêm nữa!");
                 return;
             }
             
+            // Lấy giá trị từ ô input
             var so = document.getElementById("so").value;
             
+            // Kiểm tra rỗng
             if (so === "") {
                 alert("Vui lòng nhập một số!");
                 return;
             }
             
+            // Thêm vào mảng
             mangSoNguyen.push(parseInt(so));
+            
+            // Xóa input
             document.getElementById("so").value = "";
             
+            // Hiển thị mảng và số phần tử
             document.getElementById("hienThiMang").innerHTML = mangSoNguyen.join(", ");
             document.getElementById("soPhanTu").innerHTML = mangSoNguyen.length;
         }
         
+        // Hàm tìm bội chung của 3 và 5, sau đó tính tổng
         function timVaLayTong() {
+            // Kiểm tra mảng rỗng
+            if (mangSoNguyen.length === 0) {
+                alert("Mảng đang rỗng, vui lòng thêm số vào!");
+                return;
+            }
+            
             // Tìm các số là bội chung của 3 và 5
             var cacSoBoiChung = [];
             
@@ -54,13 +70,13 @@
                 }
             }
             
-            // Tính tổng
+            // Tính tổng các số bội chung
             var tong = 0;
             for (var j = 0; j < cacSoBoiChung.length; j++) {
                 tong += cacSoBoiChung[j];
             }
             
-            // Hiển thị kết quả
+            // Hiển thị kết quả ra màn hình
             if (cacSoBoiChung.length === 0) {
                 document.getElementById("ketQua").innerHTML = "Không có số nào";
                 document.getElementById("tong").innerHTML = "0";
