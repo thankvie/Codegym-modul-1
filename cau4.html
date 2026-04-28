@@ -6,6 +6,25 @@
 </head>
 <body>
     <h2>Câu 4: Quản lý khách hàng</h2>
+    
+    <h3>Thêm khách hàng mới</h3>
+    
+    <label>Mã khách hàng:</label>
+    <input type="text" id="ma"><br>
+    
+    <label>Tên khách hàng:</label>
+    <input type="text" id="ten"><br>
+    
+    <label>Số điện thoại:</label>
+    <input type="text" id="soDienThoai"><br>
+    
+    <label>Địa chỉ:</label>
+    <input type="text" id="diaChi"><br>
+    
+    <label>Email:</label>
+    <input type="text" id="email"><br>
+    
+    <button onclick="themKhachHang()">Thêm khách hàng</button>
 
     <script>
         // Đối tượng Khách hàng
@@ -15,6 +34,26 @@
             this.soDienThoai = soDienThoai;
             this.diaChi = diaChi;
             this.email = email;
+        }
+        
+        // Mảng danh sách khách hàng
+        var danhSachKhachHang = [];
+        
+        // Hàm thêm khách hàng
+        function themKhachHang() {
+            var ma = document.getElementById("ma").value;
+            var ten = document.getElementById("ten").value;
+            var soDienThoai = document.getElementById("soDienThoai").value;
+            var diaChi = document.getElementById("diaChi").value;
+            var email = document.getElementById("email").value;
+            
+            // Tạo đối tượng khách hàng mới
+            var khachHangMoi = new KhachHang(ma, ten, soDienThoai, diaChi, email);
+            
+            // Thêm vào danh sách
+            danhSachKhachHang.push(khachHangMoi);
+            
+            alert("Thêm khách hàng thành công!");
         }
     </script>
 </body>
