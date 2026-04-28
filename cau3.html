@@ -20,7 +20,8 @@
     <input type="number" id="k">
     <button onclick="demCapSo()">Đếm cặp số</button>
     
-    <p>Kết quả: <span id="ketQua"></span></p>
+    <p>Số cặp thỏa mãn: <b><span id="ketQua"></span></b></p>
+    <p>Các cặp: <span id="danhSachCap"></span></p>
 
     <script>
         var mang = [];
@@ -45,13 +46,30 @@
         }
         
         function demCapSo() {
-            var k = document.getElementById("k").value;
+            var k = parseInt(document.getElementById("k").value);
             
             // Kiểm tra k là số nguyên dương
-            if (k === "" || parseInt(k) <= 0) {
+            if (!k || k <= 0) {
                 alert("Vui lòng nhập số nguyên dương k!");
                 return;
             }
+            
+            // Đếm các cặp có tổng chia hết cho k
+            var dem = 0;
+            var danhSach = [];
+            
+            for (var i = 0; i < mang.length; i++) {
+                for (var j = i + 1; j < mang.length; j++) {
+                    if ((mang[i] + mang[j]) % k === 0) {
+                        dem++;
+                        danhSach.push("(" + mang[i] + ", " + mang[j] + ")");
+                    }
+                }
+            }
+            
+            // Hiển thị kết quả
+            document.getElementById("ketQua").innerHTML = dem + " cặp";
+            document.getElementById("danhSachCap").innerHTML = danhSach.join(", ");
         }
     </script>
 </body>
