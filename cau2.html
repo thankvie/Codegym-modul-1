@@ -14,6 +14,24 @@
             if (diem < 0 || diem > 100) {
                 return "Điểm không hợp lệ";
             }
+            
+            // Nếu điểm nhỏ hơn 48 thì không làm tròn
+            if (diem < 48) {
+                return diem;
+            }
+            
+            // Tìm bội số tiếp theo của 5
+            var boiSoTiepTheo = Math.ceil(diem / 5) * 5;
+            
+            // Tính khoảng cách
+            var khoangCach = boiSoTiepTheo - diem;
+            
+            // Nếu khoảng cách nhỏ hơn 3 thì làm tròn lên
+            if (khoangCach < 3) {
+                return boiSoTiepTheo;
+            } else {
+                return diem;
+            }
         }
     </script>
 </body>
