@@ -10,7 +10,10 @@
     <script>
         // Hàm làm tròn điểm theo quy tắc của thầy Trung
         function lamTronDiem(diem) {
-            
+            // Kiểm tra điểm trong khoảng 0-100
+            if (diem < 0 || diem > 100) {
+                return "Điểm không hợp lệ";
+            }
         }
     </script>
 </body>
