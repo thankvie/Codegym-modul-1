@@ -18,7 +18,19 @@
         var mang = [];
         
         function themVaoMang() {
+            // Kiểm tra không quá 50 phần tử
+            if (mang.length >= 50) {
+                alert("Mảng đã có 50 phần tử, không thể thêm nữa!");
+                return;
+            }
+            
             var so = document.getElementById("so").value;
+            
+            if (so === "") {
+                alert("Vui lòng nhập một số!");
+                return;
+            }
+            
             mang.push(parseInt(so));
             document.getElementById("so").value = "";
             document.getElementById("hienThiMang").innerHTML = mang.join(", ");
