@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 3 - Đếm cặp số</title>
+</head>
+<body>
+    <h2>Câu 3: Đếm cặp số có tổng chia hết cho k</h2>
+    
+    <label>Nhập số:</label>
+    <input type="number" id="so">
+    <button onclick="themVaoMang()">Thêm vào mảng</button>
+    
+    <p>Mảng: <span id="hienThiMang"></span></p>
+    <p>Số phần tử: <span id="soPhanTu">0</span>/50</p>
+
+    <script>
+        var mang = [];
+        
+        function themVaoMang() {
+            var so = document.getElementById("so").value;
+            mang.push(parseInt(so));
+            document.getElementById("so").value = "";
+            document.getElementById("hienThiMang").innerHTML = mang.join(", ");
+            document.getElementById("soPhanTu").innerHTML = mang.length;
+        }
+    </script>
+</body>
+</html>
