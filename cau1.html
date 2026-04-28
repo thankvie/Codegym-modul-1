@@ -13,12 +13,18 @@
     
     <p>Mảng số nguyên: <span id="hienThiMang"></span></p>
     <p>Số phần tử: <span id="soPhanTu">0</span>/20</p>
+    
+    <hr>
+    
+    <button onclick="timVaLayTong()">Tìm bội chung của 3 và 5</button>
+    
+    <p>Các số là bội chung: <span id="ketQua"></span></p>
+    <p>Tổng: <span id="tong"></span></p>
 
     <script>
         var mangSoNguyen = [];
         
         function themVaoMang() {
-            // Kiểm tra không quá 20 phần tử
             if (mangSoNguyen.length >= 20) {
                 alert("Mảng đã có 20 phần tử, không thể thêm nữa!");
                 return;
@@ -26,7 +32,6 @@
             
             var so = document.getElementById("so").value;
             
-            // Kiểm tra rỗng
             if (so === "") {
                 alert("Vui lòng nhập một số!");
                 return;
@@ -37,6 +42,32 @@
             
             document.getElementById("hienThiMang").innerHTML = mangSoNguyen.join(", ");
             document.getElementById("soPhanTu").innerHTML = mangSoNguyen.length;
+        }
+        
+        function timVaLayTong() {
+            // Tìm các số là bội chung của 3 và 5
+            var cacSoBoiChung = [];
+            
+            for (var i = 0; i < mangSoNguyen.length; i++) {
+                if (mangSoNguyen[i] % 3 === 0 && mangSoNguyen[i] % 5 === 0) {
+                    cacSoBoiChung.push(mangSoNguyen[i]);
+                }
+            }
+            
+            // Tính tổng
+            var tong = 0;
+            for (var j = 0; j < cacSoBoiChung.length; j++) {
+                tong += cacSoBoiChung[j];
+            }
+            
+            // Hiển thị kết quả
+            if (cacSoBoiChung.length === 0) {
+                document.getElementById("ketQua").innerHTML = "Không có số nào";
+                document.getElementById("tong").innerHTML = "0";
+            } else {
+                document.getElementById("ketQua").innerHTML = cacSoBoiChung.join(", ");
+                document.getElementById("tong").innerHTML = tong;
+            }
         }
     </script>
 </body>
