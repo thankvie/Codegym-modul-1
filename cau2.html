@@ -5,7 +5,20 @@
     <title>Câu 2 - Làm tròn điểm</title>
 </head>
 <body>
-    <h2>Câu 2: Làm tròn điểm số</h2>
+    <h2>Câu 2: Làm tròn điểm số theo quy tắc thầy Trung</h2>
+    
+    <label>Nhập điểm:</label>
+    <input type="number" id="diem" placeholder="Nhập điểm (0-100)">
+    <button onclick="hienThiKetQua()">Làm tròn</button>
+    
+    <p>Điểm sau khi làm tròn: <b><span id="ketQua"></span></b></p>
+    
+    <hr>
+    
+    <p>Ví dụ:</p>
+    <p>- 84 điểm -> 85 điểm</p>
+    <p>- 77 điểm -> 77 điểm</p>
+    <p>- 44 điểm -> 44 điểm</p>
 
     <script>
         // Hàm làm tròn điểm theo quy tắc của thầy Trung
@@ -15,7 +28,7 @@
                 return "Điểm không hợp lệ";
             }
             
-            // Nếu điểm nhỏ hơn 48 thì không làm tròn
+            // Nếu điểm nhỏ hơn 48 thì không làm tròn vì vẫn trượt
             if (diem < 48) {
                 return diem;
             }
@@ -23,21 +36,24 @@
             // Tìm bội số tiếp theo của 5
             var boiSoTiepTheo = Math.ceil(diem / 5) * 5;
             
-            // Tính khoảng cách
+            // Tính khoảng cách giữa điểm và bội số tiếp theo
             var khoangCach = boiSoTiepTheo - diem;
             
             // Nếu khoảng cách nhỏ hơn 3 thì làm tròn lên
             if (khoangCach < 3) {
                 return boiSoTiepTheo;
-            } else {
-                return diem;
             }
+            
+            // Không làm tròn
+            return diem;
         }
         
-        // Test thử
-        document.write("<p>84 điểm làm tròn thành: " + lamTronDiem(84) + "</p>");
-        document.write("<p>77 điểm làm tròn thành: " + lamTronDiem(77) + "</p>");
-        document.write("<p>44 điểm làm tròn thành: " + lamTronDiem(44) + "</p>");
+        // Hàm hiển thị kết quả
+        function hienThiKetQua() {
+            var diemNhap = parseInt(document.getElementById("diem").value);
+            var diemLamTron = lamTronDiem(diemNhap);
+            document.getElementById("ketQua").innerHTML = diemLamTron;
+        }
     </script>
 </body>
 </html>
