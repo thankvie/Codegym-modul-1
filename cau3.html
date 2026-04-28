@@ -8,44 +8,56 @@
     <h2>Câu 3: Đếm cặp số có tổng chia hết cho k</h2>
     
     <label>Nhập số:</label>
-    <input type="number" id="so">
+    <input type="number" id="so" placeholder="Nhập số nguyên">
     <button onclick="themVaoMang()">Thêm vào mảng</button>
     
-    <p>Mảng: <span id="hienThiMang"></span></p>
+    <p>Mảng: <b><span id="hienThiMang"></span></b></p>
     <p>Số phần tử: <span id="soPhanTu">0</span>/50</p>
     
     <hr>
     
     <label>Nhập số nguyên dương k:</label>
-    <input type="number" id="k">
+    <input type="number" id="k" placeholder="Nhập k">
     <button onclick="demCapSo()">Đếm cặp số</button>
     
     <p>Số cặp thỏa mãn: <b><span id="ketQua"></span></b></p>
     <p>Các cặp: <span id="danhSachCap"></span></p>
 
     <script>
+        // Mảng số nguyên (tối đa 50 phần tử)
         var mang = [];
         
+        // Hàm thêm số vào mảng
         function themVaoMang() {
+            // Kiểm tra không quá 50 phần tử
             if (mang.length >= 50) {
                 alert("Mảng đã có 50 phần tử, không thể thêm nữa!");
                 return;
             }
             
+            // Lấy giá trị từ input
             var so = document.getElementById("so").value;
             
+            // Kiểm tra rỗng
             if (so === "") {
                 alert("Vui lòng nhập một số!");
                 return;
             }
             
+            // Thêm vào mảng
             mang.push(parseInt(so));
+            
+            // Xóa input
             document.getElementById("so").value = "";
+            
+            // Cập nhật hiển thị
             document.getElementById("hienThiMang").innerHTML = mang.join(", ");
             document.getElementById("soPhanTu").innerHTML = mang.length;
         }
         
+        // Hàm đếm cặp số có tổng chia hết cho k
         function demCapSo() {
+            // Lấy giá trị k
             var k = parseInt(document.getElementById("k").value);
             
             // Kiểm tra k là số nguyên dương
@@ -54,12 +66,20 @@
                 return;
             }
             
-            // Đếm các cặp có tổng chia hết cho k
+            // Kiểm tra mảng rỗng
+            if (mang.length === 0) {
+                alert("Mảng rỗng, vui lòng thêm số!");
+                return;
+            }
+            
+            // Biến đếm và danh sách các cặp
             var dem = 0;
             var danhSach = [];
             
+            // Duyệt từng cặp trong mảng
             for (var i = 0; i < mang.length; i++) {
                 for (var j = i + 1; j < mang.length; j++) {
+                    // Nếu tổng chia hết cho k
                     if ((mang[i] + mang[j]) % k === 0) {
                         dem++;
                         danhSach.push("(" + mang[i] + ", " + mang[j] + ")");
